@@ -16,12 +16,16 @@ def org_China(China_data, file_name):
 def check_trait(China_data):
     ref_trait = pd.read_csv('phenotype/data/Watseq/trait_information.csv', sep=',', header=0)
     # print(ref_trait.columns)
+    measured_num = 0
     for column in China_data.columns:
         if column.split('_')[0] not in ref_trait['Abbreviation used in plots'].values:
             print(column + ' is not in the reference trait list')
     for trait in ref_trait['Abbreviation used in plots']:
         if trait not in [col.split('_')[0] for col in China_data.columns]:
             print(trait + ' is not in the China data')
+            continue
+        measured_num += 1
+    print('The number of measured traits is ' + str(measured_num))
 
 
 def main():

@@ -46,6 +46,7 @@ def check_md5(name):
     ref_md5['file1'] = ref_md5['Read filename 1'].str.split().str[0]
     ref_md5['file2'] = ref_md5['Read filename 2'].str.split().str[0]
     # define files
+    # files = pd.read_csv('seq/data/' + name + '.md5', sep=r'\s+', header=None)
     files = pd.read_csv('seq/data/' + name + '.md5', sep=r'\s+', header=None)
     files.columns = ['md5', 'file']
     files['file'] = files['file'].str.split('/').str[-1]
@@ -79,7 +80,7 @@ def check_md5(name):
                 # f.write(files['file'][i].split('_')[0] + '\t' + line_sample[0] + '\n')
         if i%2 == 1:
             if files['to_ref'][i] + files['to_ref'][i-1] == 2:
-                with open('seq/data/pass1_'+name+'.txt', 'a') as f:
+                with open('seq/data/pass_'+name+'.txt', 'a') as f:
                 # with open('seq/data/pass_md5_usb.txt', 'a') as f:
                     f.write(files['file'][i].split('_')[0] + '\t' + line_sample[0] + '\n')
                 pass_md5 += 1
@@ -124,14 +125,33 @@ def choose_v1():
     print("final size = " + str(sum_size))
 
 
-
-
+def count_bam():
+    ref_md5 = pd.read_csv('seq/data/CRA012590.csv', sep=',', header=0)
+    for name in ['34', '35', '36', '37', '38', '39', '40', '41']:
+        with open('seq/data/pass_' + name + '.txt', 'r') as f:
+            lines = [line.strip() for line in f.readlines() if not line.startswith('#')]
+            bams = pd.DataFrame(lines)
+            bams = bams[0].str.split('\t', expand=True).dropna()
+            bams.columns = ['fq', 'sample']
+            bams['finished'] = bams['sample'].str.split(r'\s+').str[-1]
+            for index, row in bams.iterrows():
+                if row['finished'] == "#":
+                    ref_md5.loc[ref_md5['Accession'] == row['fq'], 'finished'] = "done"
+                    ref_md5.loc[ref_md5['Accession'] == row['fq'], 'hardware'] = name
+    with open('seq/data/count_bam.txt', 'w', newline='') as f:
+        f.write(ref_md5[['Accession', 'finished', 'hardware']].to_csv(sep='\t', index=False, header=False))
+    print('Finished number = ' + str(ref_md5['finished'].notna().sum()))
+    with open('seq/data/ignored_bam.txt', 'w', newline='') as f:
+        ignored_bam = ref_md5.loc[ref_md5['finished'].isna(), 'Accession'].sort_values()
+        # print(ignored_bam.iloc[1])
+        f.write(ignored_bam.to_csv(sep='\t', index=False, header=False))
 
 def main():
     # print_out_size(3300)
-    check_md5('38')
+    # check_md5('40.2')
     # check_bam('usb', 'old')
     # choose_v1()
+    count_bam()
 
 
 if __name__ == '__main__':
