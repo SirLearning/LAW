@@ -1011,7 +1011,7 @@ public class ReadData {
             String Data_owner = getCellValueAsString(row.getCell(24));
             String Data_owner_details = getCellValueAsString(row.getCell(25));
             String Source_of_information = getCellValueAsString(row.getCell(26));
-            
+
         }
     }
 
