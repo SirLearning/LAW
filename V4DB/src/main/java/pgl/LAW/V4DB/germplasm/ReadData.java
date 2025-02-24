@@ -984,34 +984,34 @@ public class ReadData {
 
         for (Row row : sheet) {
             if (row.getRowNum() == 0) continue;
-            String Update_year
-            String Country_ISO3_code
-            String Country_name
-            String Holding_institute_code
-            String Holding_institute_name
-            String Accession_number
-            String Taxon
-            String Genus
-            String Species
-            String Accepted_Genus
-            String Accepted_Species
-            String Crop_name
-            String Acquisition date (YYYY/MM)
-            String Country of origin (ISO3)
-            String Country of origin
-            String Biological status
-            String Genebank(s) holding safety duplications - code
-            String Genebank(s) holding safety duplications
-            String Latitude of collecting site (decimal degrees format)
-            String Longitude of collecting site (decimal degrees format)
-            String Collecting/acquisition source
-            String Type of germplasm storage
-            String Status under the Multilateral System
-            String DOI
-            String Data owner
-            String Data owner details
-            String Source of information
-
+            String Update_year = getCellValueAsString(row.getCell(0));
+            String Country_ISO3_code = getCellValueAsString(row.getCell(1));
+            String Country_name = getCellValueAsString(row.getCell(2));
+            String Holding_institute_code = getCellValueAsString(row.getCell(3));
+            String Holding_institute_name = getCellValueAsString(row.getCell(4));
+            String Accession_number = getCellValueAsString(row.getCell(5));
+            String Taxon = getCellValueAsString(row.getCell(6));
+            String Genus = getCellValueAsString(row.getCell(7));
+            String Species = getCellValueAsString(row.getCell(8));
+            String Accepted_Genus = getCellValueAsString(row.getCell(9));
+            String Accepted_Species = getCellValueAsString(row.getCell(10));
+            String Crop_name = getCellValueAsString(row.getCell(11));
+            String Acquisition_date = getCellValueAsString(row.getCell(12));
+            String Country_of_origin_ISO3 = getCellValueAsString(row.getCell(13));
+            String Country_of_origin = getCellValueAsString(row.getCell(14));
+            String Biological_status = getCellValueAsString(row.getCell(15));
+            String Genebank_holding_safety_duplications_code = getCellValueAsString(row.getCell(16));
+            String Genebank_holding_safety_duplications = getCellValueAsString(row.getCell(17));
+            String Latitude_of_collecting_site = getCellValueAsString(row.getCell(18));
+            String Longitude_of_collecting_site = getCellValueAsString(row.getCell(19));
+            String Collecting_or_acquisition_source = getCellValueAsString(row.getCell(20));
+            String Type_of_germplasm_storage = getCellValueAsString(row.getCell(21));
+            String Status_under_the_Multilateral_System = getCellValueAsString(row.getCell(22));
+            String DOI = getCellValueAsString(row.getCell(23));
+            String Data_owner = getCellValueAsString(row.getCell(24));
+            String Data_owner_details = getCellValueAsString(row.getCell(25));
+            String Source_of_information = getCellValueAsString(row.getCell(26));
+            
         }
     }
 

@@ -284,4 +284,32 @@ set foreign_key_checks = 1;
 
 drop table main;
 
-
+create table wiews (
+    Update_year varchar(255),
+    Country_ISO3_code varchar(255),
+    Country_name varchar(255),
+    Holding_institute_code varchar(255),
+    Holding_institute_name varchar(255),
+    Accession_number varchar(255) primary key,
+    Taxon varchar(255),
+    Genus varchar(255),
+    Species varchar(255),
+    Accepted_Genus varchar(255),
+    Accepted_Species varchar(255),
+    Crop_name varchar(255),
+    Acquisition_date varchar(255),
+    Country_of_origin_ISO3 varchar(255),
+    Country_of_origin varchar(255),
+    Biological_status varchar(255),
+    Genebank_holding_safety_duplications_code varchar(255),
+    Genebank_holding_safety_duplications varchar(255),
+    Latitude_of_collecting_site varchar(255),
+    Longitude_of_collecting_site varchar(255),
+    Collecting_or_acquisition_source varchar(255),
+    Type_of_germplasm_storage varchar(255),
+    Status_under_the_Multilateral_System varchar(255),
+    DOI varchar(255),
+    Data_owner varchar(255),
+    Data_owner_details varchar(255),
+    Source_of_information varchar(255)
+);
